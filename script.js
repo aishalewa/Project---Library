@@ -35,6 +35,7 @@ for (let book of myLibrary){
 }
 function createCard(newbook){
     let newContainer = document.createElement("div");
+    newContainer.id = crypto.randomUUID();
     newContainer.classList.add('card');
     newContainer.textContent=(newbook);
     container.append(newContainer);
