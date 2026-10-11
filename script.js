@@ -1,3 +1,5 @@
+let container = document.querySelector(".container");
+
 const myLibrary = [];
 
 
@@ -26,6 +28,16 @@ addBookToLibrary("The vill girl", "Aisha Mua", 50, "not read");
 addBookToLibrary("The girl", "Aisha Must", 50, "not rea");
 
 
+
 for (let book of myLibrary){
     console.log(book);
+    createCard(book)
 }
+function createCard(newbook){
+    let newContainer = document.createElement("div");
+    newContainer.classList.add('card');
+    newContainer.textContent=(newbook);
+    container.append(newContainer);
+}
+
+
