@@ -1,4 +1,5 @@
 let container = document.querySelector(".container");
+let btn = document.querySelector("#submit-btn");
 
 const myLibrary = [];
 
@@ -16,7 +17,8 @@ function Book(title, author, pages, isread){
 
 function addBookToLibrary(title, author, pages, isread) {
     let book = new Book(title, author, pages, isread);
-    myLibrary.push(book.info());
+    myLibrary.push(book);
+    return book;
   // take params, create a book then store it in the array
 }
 
@@ -27,12 +29,12 @@ addBookToLibrary(" girl", "Aisha Mua", 50, "not read yet");
 addBookToLibrary("The vill girl", "Aisha Mua", 50, "not read");
 addBookToLibrary("The girl", "Aisha Must", 50, "not rea");
 
+btn.addEventListener("click", function(e){
+    e.preventDefault();
+    let buttonBook = addBookToLibrary("title", "author", 50, "isread");
+    createCard(buttonBook.info())
+})
 
-
-for (let book of myLibrary){
-    console.log(book);
-    createCard(book)
-}
 function createCard(newbook){
     let newContainer = document.createElement("div");
     newContainer.id = crypto.randomUUID();
@@ -40,5 +42,11 @@ function createCard(newbook){
     newContainer.textContent=(newbook);
     container.append(newContainer);
 }
+
+for (let book of myLibrary){
+    createCard(book.info())
+}
+
+
 
 
