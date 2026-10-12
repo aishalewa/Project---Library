@@ -1,8 +1,18 @@
 let container = document.querySelector(".container");
 let btn = document.querySelector("#submit-btn");
 
+let inputTitle = document.querySelector("#title");
+let inputAuthor = document.querySelector("#author");
+let inputPages = document.querySelector("#pages");
+let inputIsRead = document.querySelector("#is_read");
+
+
 const myLibrary = [];
 
+let buttonArray = [
+    
+
+]
 
 function Book(title, author, pages, isread){
     this.title = title;
@@ -31,8 +41,16 @@ addBookToLibrary("The girl", "Aisha Must", 50, "not rea");
 
 btn.addEventListener("click", function(e){
     e.preventDefault();
-    let buttonBook = addBookToLibrary("title", "author", 50, "isread");
-    createCard(buttonBook.info())
+    let details = getBookFromUser();
+
+    let title = details[0];
+    let author = details[1];
+    let pages = details[2];
+    let isread = details[3];
+    // let buttonBook = addBookToLibrary("title", "author", 50, "isread");
+    let buttonBook = addBookToLibrary(title, author, pages, isread);
+    createCard(buttonBook.info());
+    reset();
 })
 
 function createCard(newbook){
@@ -47,6 +65,21 @@ for (let book of myLibrary){
     createCard(book.info())
 }
 
+function getBookFromUser(){
+    let title = inputTitle.value;
+    let author = inputAuthor.value;
+    let pages = inputPages.value;
+    let isRead = inputIsRead.value;
+
+    return([title, author, pages, isRead])
+}
+
+function reset(){
+    inputTitle.value ="";
+    inputAuthor.value="";
+    inputPages.value="";
+    inputIsRead.value="";
+};
 
 
 

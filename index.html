@@ -12,8 +12,26 @@
         <div class="container">
 
         </div>
-        <button id="submit-btn" type="submit">Add new book</button>
+        <button id="submit-btn" type="submit" form="add-book">Add new book</button>
     </main>
+
+    <!-- title, author, pages, isread -->
+
+    <form action="#" id="add-book">
+
+        <label for="title"> Enter Title: </label> <br>
+        <input type="text" id="title" name="title" value="let me be"><br>
+
+        <label for="author"> Enter Author:</label> <br>
+        <input type="text" id="author" name="author" value=""> <br>
+
+        <label for="pages"> Enter Pages:</label><br>
+        <input type="number" id="pages" name="pages" value=""> <br>
+
+        <label for="is_read"> Have you read the book? Enter read or not read yet</label><br>
+        <input type="text" id="is_read" name="is-read" value=""> <br> 
+        
+    </form>
 
     <script src="script.js"></script>
 </body>
