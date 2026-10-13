@@ -10,10 +10,7 @@ let inputIsRead = document.querySelector("#is_read");
 
 const myLibrary = [];
 
-let buttonArray = [
-    
-
-]
+let buttonArray = []
 
 function Book(title, author, pages, isread){
     this.id=crypto.randomUUID();
@@ -21,11 +18,14 @@ function Book(title, author, pages, isread){
     this.author = author;
     this.pages = pages;
     this.isread = isread;
-     this.info = function info(){
-        return (`${title} by ${author}, ${pages} pages, ${isread}`)
-    };
+    //  this.info = function info(){
+    //     return (`${title} by ${author}, ${pages} pages, ${isread}`)
+    // };
 }
 
+Book.prototype.info = function(){
+        return (`${this.title} by ${this.author}, ${this.pages} pages, ${this.isread}`)
+    };
 
 function addBookToLibrary(title, author, pages, isread) {
     let book = new Book(title, author, pages, isread);
@@ -45,9 +45,6 @@ addBookToLibrary("The girl", "Aisha Must", 50, "not rea");
 btn.addEventListener("click", function(e){
     e.preventDefault();
 
-    console.log("Before adding:", myLibrary.length);
-    alert("po")
-
     let details = getBookFromUser();
 
     let title = details[0];
@@ -55,11 +52,9 @@ btn.addEventListener("click", function(e){
     let pages = details[2];
     let isread = details[3];
     // let buttonBook = addBookToLibrary("title", "author", 50, "isread");
+    // let buttonBook = addBookToLibrary(title, author, pages, isread);
+    // addBookToLibrary( "iam ", "froma", 50, "the bush t");
     let buttonBook = addBookToLibrary(title, author, pages, isread);
-
-    console.log("Book created:", buttonBook);
-    console.log("After adding:", myLibrary.length);
-
     createCard(buttonBook);
     reset();
 })
@@ -112,7 +107,7 @@ function getBookFromUser(){
     let title = inputTitle.value;
     let author = inputAuthor.value;
     let pages = inputPages.value;
-    let isRead = inputIsRead.value;
+    let isRead = inputIsRead.checked;
 
     return([title, author, pages, isRead])
 }
@@ -121,7 +116,7 @@ function reset(){
     inputTitle.value ="";
     inputAuthor.value="";
     inputPages.value="";
-    inputIsRead.value="";
+    inputIsRead.checked= false;
 };
 
 
