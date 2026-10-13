@@ -15,3 +15,6 @@ body{
     outline: 2px solid black;
     
 }
+.delete{
+    background-color: red;
+}

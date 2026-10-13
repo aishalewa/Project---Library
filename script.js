@@ -1,5 +1,6 @@
 let container = document.querySelector(".container");
 let btn = document.querySelector("#submit-btn");
+// let deleteBtn = document.querySelector(".delete");
 
 let inputTitle = document.querySelector("#title");
 let inputAuthor = document.querySelector("#author");
@@ -15,6 +16,7 @@ let buttonArray = [
 ]
 
 function Book(title, author, pages, isread){
+    this.id=crypto.randomUUID();
     this.title = title;
     this.author = author;
     this.pages = pages;
@@ -28,6 +30,7 @@ function Book(title, author, pages, isread){
 function addBookToLibrary(title, author, pages, isread) {
     let book = new Book(title, author, pages, isread);
     myLibrary.push(book);
+    console.log("function called")
     return book;
   // take params, create a book then store it in the array
 }
@@ -41,6 +44,10 @@ addBookToLibrary("The girl", "Aisha Must", 50, "not rea");
 
 btn.addEventListener("click", function(e){
     e.preventDefault();
+
+    console.log("Before adding:", myLibrary.length);
+    alert("po")
+
     let details = getBookFromUser();
 
     let title = details[0];
@@ -49,20 +56,56 @@ btn.addEventListener("click", function(e){
     let isread = details[3];
     // let buttonBook = addBookToLibrary("title", "author", 50, "isread");
     let buttonBook = addBookToLibrary(title, author, pages, isread);
-    createCard(buttonBook.info());
+
+    console.log("Book created:", buttonBook);
+    console.log("After adding:", myLibrary.length);
+
+    createCard(buttonBook);
     reset();
 })
 
-function createCard(newbook){
+function createCard(newBook){
+    let deleteBtn = document.createElement("button")
     let newContainer = document.createElement("div");
-    newContainer.id = crypto.randomUUID();
+
+    deleteBtn.classList.add("delete");
+    deleteBtn.textContent = "X"
+    
+
+    newContainer.dataset.id = newBook.id;
     newContainer.classList.add('card');
-    newContainer.textContent=(newbook);
+
+    newContainer.textContent=(newBook.info());
+    newContainer.append(deleteBtn);
+
     container.append(newContainer);
+
+
+    
+
+    deleteBtn.addEventListener("click", function(e){
+       newContainer.remove();
+
+       // Find the book's position in the array
+        let bookIndex = myLibrary.findIndex(function (book) {
+            return book.id === newContainer.dataset.id;
+        });
+
+        // Remove the book from the array
+        if (bookIndex !== -1) {
+            myLibrary.splice(bookIndex, 1);
+        }
+
+    //    alert(this.dataset.id)
+    //    alert('hello')
+    })
+
+    
 }
 
+
 for (let book of myLibrary){
-    createCard(book.info())
+    createCard(book)
 }
 
 function getBookFromUser(){
@@ -80,6 +123,8 @@ function reset(){
     inputPages.value="";
     inputIsRead.value="";
 };
+
+
 
 
 
