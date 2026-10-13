@@ -8,7 +8,11 @@ let inputPages = document.querySelector("#pages");
 let inputIsRead = document.querySelector("#is_read");
 
 
-const myLibrary = [];
+const myLibrary = [
+    new Book("Things Fall Apart", "Chinua Achebe", 209, true),
+    new Book("Americanah", "Chimamanda Ngozi Adichie", 477, false),
+    new Book("The River Between", "Ngũgĩ wa Thiong'o", 152, true)
+];
 
 let buttonArray = []
 
@@ -36,11 +40,6 @@ function addBookToLibrary(title, author, pages, isread) {
 }
 
 
-addBookToLibrary("The ", "Aisha Mustaa", 50, "read ");
-addBookToLibrary(" village ", "Aisha Muha", 50, " read yet");
-addBookToLibrary(" girl", "Aisha Mua", 50, "not read yet");
-addBookToLibrary("The vill girl", "Aisha Mua", 50, "not read");
-addBookToLibrary("The girl", "Aisha Must", 50, "not rea");
 
 btn.addEventListener("click", function(e){
     e.preventDefault();
@@ -51,9 +50,7 @@ btn.addEventListener("click", function(e){
     let author = details[1];
     let pages = details[2];
     let isread = details[3];
-    // let buttonBook = addBookToLibrary("title", "author", 50, "isread");
-    // let buttonBook = addBookToLibrary(title, author, pages, isread);
-    // addBookToLibrary( "iam ", "froma", 50, "the bush t");
+    
     let buttonBook = addBookToLibrary(title, author, pages, isread);
     createCard(buttonBook);
     reset();

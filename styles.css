@@ -2,7 +2,10 @@ body{
     background-color: pink;
     height: 100vh;
     width: auto;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    /* --font-title: 'Newsreader', Georgia, serif; */
 }
+/* dialog::backdrop { background: rgba(21, 26, 36, .55); } */
 .container{
     display: flex;
     flex-direction: column;
